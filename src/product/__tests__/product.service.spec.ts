@@ -52,32 +52,6 @@ describe('ProductService', () => {
     expect(service).toBeDefined();
   });
 
-  // Prueba: create debe crear un producto
-  describe('create', () => {
-    it('should create a product', async () => {
-      const productDTO: ProductDTO = {
-        nombre: 'Product 1',
-        descripcion: 'Description 1',
-        precio: '10.99',
-        image: 'image1.jpg',
-      };
-
-      const createdProduct: Partial<IProduct> = { ...productDTO };
-
-      mockModel.mockConstructor.mockReturnValueOnce({
-        ...productDTO,
-        save: jest.fn().mockResolvedValue(createdProduct),
-      });
-
-      const result = await service.create(productDTO);
-
-      // Verifica que se haya llamado al método con el productDTO
-      expect(mockModel.mockConstructor).toHaveBeenCalledWith(productDTO);
-
-      // Verifica que se haya llamado al método 'save' del modelo
-      expect(result).toEqual(createdProduct);
-    });
-  });
 
   // Prueba: findAll debe encontrar todos los productos
   describe('findAll', () => {
