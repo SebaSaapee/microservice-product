@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { PRODUCT } from 'src/common/models/models';
+import { PRODUCT } from '../common/models/models';
 import { ProductDTO } from './dto/product.dto';
 import { IProduct } from 'src/common/interface/product.interface';
 
@@ -9,12 +9,12 @@ import { IProduct } from 'src/common/interface/product.interface';
 @Injectable()
 export class ProductService {
 
-    constructor(@InjectModel(PRODUCT.name) private readonly model:Model<IProduct>){}
+constructor(@InjectModel(PRODUCT.name) private readonly model:Model<IProduct>){}
 
 
-async create(productDTO:ProductDTO): Promise<IProduct>{
-    const newUser = new this.model(productDTO);
-    return await newUser.save()    
+async create(productDTO: ProductDTO): Promise<IProduct> {
+    const newProduct = await this.model.create(productDTO);
+    return newProduct;
 }
 
 async findAll(): Promise<IProduct[]>{

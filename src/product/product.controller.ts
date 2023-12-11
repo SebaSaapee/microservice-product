@@ -1,7 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDTO } from './dto/product.dto';
-import { ProductosMSG } from 'src/common/constants';
+import { ProductosMSG } from '../common/constants';
+import { PRODUCT } from '../common/models/models';
 import {MessagePattern, Payload} from '@nestjs/microservices'
 
 
